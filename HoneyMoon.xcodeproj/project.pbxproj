@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7115EA1728318D0A00BD2074 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115EA1628318D0A00BD2074 /* HeaderView.swift */; };
+		7115EA1928318FB500BD2074 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115EA1828318FB500BD2074 /* FooterView.swift */; };
+		7115EA1C2831926F00BD2074 /* HeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115EA1B2831926F00BD2074 /* HeaderComponent.swift */; };
+		7115EA1E2831945B00BD2074 /* GuideComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115EA1D2831945B00BD2074 /* GuideComponent.swift */; };
+		7115EA20283196FB00BD2074 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115EA1F283196FB00BD2074 /* GuideView.swift */; };
 		71F85DB92830D606008E5A95 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F85DB82830D606008E5A95 /* ContentView.swift */; };
 		71F85DBB2830D607008E5A95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71F85DBA2830D607008E5A95 /* Assets.xcassets */; };
 		71F85DBE2830D607008E5A95 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71F85DBD2830D607008E5A95 /* Preview Assets.xcassets */; };
@@ -21,6 +26,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7115EA1628318D0A00BD2074 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		7115EA1828318FB500BD2074 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		7115EA1B2831926F00BD2074 /* HeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderComponent.swift; sourceTree = "<group>"; };
+		7115EA1D2831945B00BD2074 /* GuideComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideComponent.swift; sourceTree = "<group>"; };
+		7115EA1F283196FB00BD2074 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
 		71F85DB32830D606008E5A95 /* HoneyMoon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HoneyMoon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71F85DB82830D606008E5A95 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		71F85DBA2830D607008E5A95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,6 +57,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7115EA1A2831923600BD2074 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7115EA1B2831926F00BD2074 /* HeaderComponent.swift */,
+				7115EA1D2831945B00BD2074 /* GuideComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		71F85DAA2830D606008E5A95 = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				71F85DCD2830D8B5008E5A95 /* Info.plist */,
+				7115EA1A2831923600BD2074 /* Components */,
 				71F85DD12830DACF008E5A95 /* View */,
 				71F85DD72830DB90008E5A95 /* Data */,
 				71F85DD22830DAD5008E5A95 /* Model */,
@@ -110,6 +130,9 @@
 			children = (
 				71F85DB82830D606008E5A95 /* ContentView.swift */,
 				71F85DD82830DBB0008E5A95 /* CardView.swift */,
+				7115EA1628318D0A00BD2074 /* HeaderView.swift */,
+				7115EA1828318FB500BD2074 /* FooterView.swift */,
+				7115EA1F283196FB00BD2074 /* GuideView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,10 +228,15 @@
 			files = (
 				71F85DD62830DB44008E5A95 /* HoneyMoonData.swift in Sources */,
 				71F85DD42830DAED008E5A95 /* HoneyMoonModel.swift in Sources */,
+				7115EA1E2831945B00BD2074 /* GuideComponent.swift in Sources */,
 				71F85DCA2830D84A008E5A95 /* AppDelegate.swift in Sources */,
 				71F85DB92830D606008E5A95 /* ContentView.swift in Sources */,
 				71F85DD92830DBB0008E5A95 /* CardView.swift in Sources */,
+				7115EA1928318FB500BD2074 /* FooterView.swift in Sources */,
+				7115EA1C2831926F00BD2074 /* HeaderComponent.swift in Sources */,
+				7115EA20283196FB00BD2074 /* GuideView.swift in Sources */,
 				71F85DCC2830D86C008E5A95 /* SceneDelegate.swift in Sources */,
+				7115EA1728318D0A00BD2074 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

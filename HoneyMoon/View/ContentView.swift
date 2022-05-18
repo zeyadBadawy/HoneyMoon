@@ -6,10 +6,30 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ContentView: View {
+    //MARK: PROPERTIES
+    @State var showAlert:Bool = false
+    
+    let uiimage = UIImage(named: "Zeyad")
+    
+    
+    //MARK: BODY
     var body: some View {
-        CardView(destination: honeyMoonData[3])
+        VStack {
+            HeaderView()
+            Spacer()
+            CardView(destination: honeyMoonData[3])
+                .padding()
+            Spacer()
+            FooterView(showBookingAlert: $showAlert)
+                .frame(height: 80)
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("success".uppercased()), message: Text("wishing the lovely and the most precious what is the time together for the amazing couple."), dismissButton: .default(Text("Happy Honeymoon!")))
+        }
+        
     }
 }
 
