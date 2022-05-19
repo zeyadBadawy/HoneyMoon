@@ -34,8 +34,6 @@ struct FooterView: View {
             }
             Spacer()
             
-
-            
             Image(systemName: "heart.circle")
                 .resizable()
                 .scaledToFit()
