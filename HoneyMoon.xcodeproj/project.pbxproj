@@ -16,6 +16,7 @@
 		714A39302835953E00C364D0 /* TitleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A392F2835953E00C364D0 /* TitleModifier.swift */; };
 		714A3933283599B000C364D0 /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A3932283599B000C364D0 /* ButtonModifier.swift */; };
 		714A393528362A2900C364D0 /* ImageModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A393428362A2800C364D0 /* ImageModifier.swift */; };
+		714A393828362E4D00C364D0 /* CardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A393728362E4D00C364D0 /* CardTransition.swift */; };
 		71F85DB92830D606008E5A95 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F85DB82830D606008E5A95 /* ContentView.swift */; };
 		71F85DBB2830D607008E5A95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71F85DBA2830D607008E5A95 /* Assets.xcassets */; };
 		71F85DBE2830D607008E5A95 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71F85DBD2830D607008E5A95 /* Preview Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		714A392F2835953E00C364D0 /* TitleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleModifier.swift; sourceTree = "<group>"; };
 		714A3932283599B000C364D0 /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
 		714A393428362A2800C364D0 /* ImageModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModifier.swift; sourceTree = "<group>"; };
+		714A393728362E4D00C364D0 /* CardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransition.swift; sourceTree = "<group>"; };
 		71F85DB32830D606008E5A95 /* HoneyMoon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HoneyMoon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71F85DB82830D606008E5A95 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		71F85DBA2830D607008E5A95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -84,6 +86,14 @@
 			path = Modifier;
 			sourceTree = "<group>";
 		};
+		714A393628362E3800C364D0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				714A393728362E4D00C364D0 /* CardTransition.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		71F85DAA2830D606008E5A95 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +113,7 @@
 		71F85DB52830D606008E5A95 /* HoneyMoon */ = {
 			isa = PBXGroup;
 			children = (
+				714A393628362E3800C364D0 /* Extensions */,
 				71F85DCD2830D8B5008E5A95 /* Info.plist */,
 				7115EA1A2831923600BD2074 /* Components */,
 				714A3931283595C000C364D0 /* Modifier */,
@@ -250,6 +261,7 @@
 				71F85DD42830DAED008E5A95 /* HoneyMoonModel.swift in Sources */,
 				7115EA1E2831945B00BD2074 /* GuideComponent.swift in Sources */,
 				71F85DCA2830D84A008E5A95 /* AppDelegate.swift in Sources */,
+				714A393828362E4D00C364D0 /* CardTransition.swift in Sources */,
 				714A39302835953E00C364D0 /* TitleModifier.swift in Sources */,
 				714A392E2835942900C364D0 /* InfoView.swift in Sources */,
 				71F85DB92830D606008E5A95 /* ContentView.swift in Sources */,

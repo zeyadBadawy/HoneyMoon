@@ -15,7 +15,8 @@ struct ContentView: View {
     @State var showInfoView:Bool = false
     @GestureState private var dragState:DragState = .inActive
     private var dragAreaThreshold:CGFloat = 65.0
-    
+    @State private var lastCardIndex = 1
+    @State var cardRemovalTransition = AnyTransition.trailingBottom
     
     //MARK: DRAG STATES
     
@@ -55,19 +56,27 @@ struct ContentView: View {
     
     //MARK: CARD VIEWS
     
-    var cardViews:[CardView] = {
+    @State var cardViews:[CardView] = {
         var views = [CardView]()
         for index in 0..<2 {
             views.append(CardView(destination: honeyMoonData[index]))
         }
-        return views.reversed()
+        return views
     }()
     
     private func isTopCard(cardView: CardView) -> Bool {
         guard let index = cardViews.firstIndex(where: { $0.id == cardView.id }) else {
-            return true
+            return false
         }
-        return index != 0
+        return index == 0
+    }
+    
+    func moveCards() {
+        cardViews.removeFirst()
+        self.lastCardIndex += 1
+        let honeyMoon = honeyMoonData[lastCardIndex % honeyMoonData.count]
+        let newCard = CardView(destination: honeyMoon)
+        cardViews.append(newCard)
     }
     
     //MARK: BODY
@@ -85,6 +94,7 @@ struct ContentView: View {
             ZStack{
                 ForEach(cardViews) { cardView in
                     cardView
+                        .zIndex(self.isTopCard(cardView: cardView) ? 1 : 0)
                         .overlay(
                             ZStack {
                                 Image(systemName: "x.circle")
@@ -112,7 +122,30 @@ struct ContentView: View {
                                     break
                                 }
                             })
+                                .onChanged({ value in
+                                    guard case .second(true ,let drag?) = value else {
+                                        return
+                                    }
+                                    if drag.translation.width < -self.dragAreaThreshold{
+                                        self.cardRemovalTransition = .leadingBottom
+                                    }
+                                    
+                                    if drag.translation.width > self.dragAreaThreshold{
+                                        self.cardRemovalTransition = .trailingBottom
+                                    }
+                                })
+                                .onEnded({ value in
+                                    guard case .second(true ,let drag?) = value else {
+                                        return
+                                    }
+                                    
+                                    if drag.translation.width < -self.dragAreaThreshold ||
+                                        drag.translation.width > self.dragAreaThreshold {
+                                        self.moveCards()
+                                    }
+                                })
                         )
+                        .transition(self.cardRemovalTransition)
                 }
             }
             .padding(.horizontal)
