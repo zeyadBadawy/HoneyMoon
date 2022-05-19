@@ -14,7 +14,7 @@ struct ContentView: View {
     @State var showGuideView:Bool = false
     @State var showInfoView:Bool = false
     @GestureState private var dragState:DragState = .inActive
-        
+    private var dragAreaThreshold:CGFloat = 65.0
     
     
     //MARK: DRAG STATES
@@ -64,10 +64,10 @@ struct ContentView: View {
     }()
     
     private func isTopCard(cardView: CardView) -> Bool {
-      guard let index = cardViews.firstIndex(where: { $0.id == cardView.id }) else {
-        return true
-      }
-      return index != 0
+        guard let index = cardViews.firstIndex(where: { $0.id == cardView.id }) else {
+            return true
+        }
+        return index != 0
     }
     
     //MARK: BODY
@@ -85,6 +85,16 @@ struct ContentView: View {
             ZStack{
                 ForEach(cardViews) { cardView in
                     cardView
+                        .overlay(
+                            ZStack {
+                                Image(systemName: "x.circle")
+                                    .modifier(ImageModifier())
+                                    .opacity(self.dragState.translation.width < -self.dragAreaThreshold && isTopCard(cardView: cardView) ? 1 : 0)
+                                Image(systemName: "heart.circle")
+                                    .modifier(ImageModifier())
+                                    .opacity(self.dragState.translation.width > self.dragAreaThreshold && isTopCard(cardView: cardView) ? 1 : 0)
+                            }
+                        )
                         .offset(x: isTopCard(cardView: cardView) ? self.dragState.translation.width : 0 ,
                                 y: isTopCard(cardView: cardView) ?   self.dragState.translation.height : 0 )
                         .scaleEffect( self.dragState.isDragging && isTopCard(cardView: cardView) ? 0.85 : 1 )
