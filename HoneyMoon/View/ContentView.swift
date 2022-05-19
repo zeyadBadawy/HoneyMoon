@@ -13,19 +13,107 @@ struct ContentView: View {
     @State var showAlert:Bool = false
     @State var showGuideView:Bool = false
     @State var showInfoView:Bool = false
-    let uiimage = UIImage(named: "Zeyad")
+    @GestureState private var dragState:DragState = .inActive
+        
     
+    
+    //MARK: DRAG STATES
+    
+    enum DragState {
+        case inActive
+        case pressing
+        case dragging(translation:CGSize)
+        
+        var translation:CGSize {
+            switch self {
+            case .inActive , .pressing:
+                return .zero
+            case .dragging(let translation):
+                return translation
+            }
+        }
+        
+        var isDragging:Bool {
+            switch self {
+            case .dragging:
+                return true
+            case .pressing , .inActive:
+                return false
+            }
+        }
+        
+        var isPressing:Bool {
+            switch self {
+            case .dragging , .pressing:
+                return true
+            case .inActive:
+                return false
+            }
+        }
+    }
+    
+    
+    //MARK: CARD VIEWS
+    
+    var cardViews:[CardView] = {
+        var views = [CardView]()
+        for index in 0..<2 {
+            views.append(CardView(destination: honeyMoonData[index]))
+        }
+        return views.reversed()
+    }()
+    
+    private func isTopCard(cardView: CardView) -> Bool {
+      guard let index = cardViews.firstIndex(where: { $0.id == cardView.id }) else {
+        return true
+      }
+      return index != 0
+    }
     
     //MARK: BODY
     var body: some View {
         VStack {
+            //MARK: HEADER
             HeaderView(showGuideView: $showGuideView, showInfoView: $showInfoView)
+                .opacity(dragState.isDragging ? 0.0 : 1.0)
+                .animation(.default)
             Spacer()
-            CardView(destination: honeyMoonData[3])
-                .padding()
+            
+            
+            //MARK: CARD VIEWS
+            
+            ZStack{
+                ForEach(cardViews) { cardView in
+                    cardView
+                        .offset(x: isTopCard(cardView: cardView) ? self.dragState.translation.width : 0 ,
+                                y: isTopCard(cardView: cardView) ?   self.dragState.translation.height : 0 )
+                        .scaleEffect( self.dragState.isDragging && isTopCard(cardView: cardView) ? 0.85 : 1 )
+                        .rotationEffect( Angle(degrees: isTopCard(cardView: cardView) ? self.dragState.translation.width/12 : 0))
+                        .animation(.interpolatingSpring(stiffness: 120, damping: 120))
+                        .gesture(LongPressGesture(minimumDuration: 0.01)
+                            .sequenced(before: DragGesture())
+                            .updating(self.$dragState, body: { value, state, transaction in
+                                switch value {
+                                case .first(true):
+                                    state = .pressing
+                                case .second(true, let drag):
+                                    state = .dragging(translation: drag?.translation ?? .zero)
+                                default :
+                                    break
+                                }
+                            })
+                        )
+                }
+            }
+            .padding(.horizontal)
             Spacer()
+            
+            
+            //MARK: FOOTER
             FooterView(showBookingAlert: $showAlert)
                 .frame(height: 80)
+                .opacity(dragState.isDragging ? 0.0 : 1.0)
+                .animation(.default)
         }
         .alert(isPresented: $showAlert) {
             Alert(title: Text("success".uppercased()), message: Text("wishing the lovely and the most precious what is the time together for the amazing couple."), dismissButton: .default(Text("Happy Honeymoon!")))
